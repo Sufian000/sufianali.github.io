@@ -1,0 +1,81 @@
+:root {
+  --bg-gradient: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  --panel-gradient: linear-gradient(135deg, #1a1a1a, #1f1f1f);
+  --accent: #00bfa6;
+  --text-color: #ffffff;
+  --border-color: #3a3a3a;
+  --font: 'Inter', sans-serif;
+  --radius: 14px;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  display: flex;
+  min-height: 100vh;
+  font-family: var(--font);
+  background: var(--bg-gradient);
+  color: var(--text-color);
+}
+aside {
+  width: 360px;
+  background: var(--panel-gradient);
+  padding: 32px 24px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  border-right: 2px solid var(--border-color);
+}
+aside h2 {
+  font-size: 20px;
+  margin: 0 0 12px;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+}
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+input[type="checkbox"], input[type="radio"] {
+  transform: scale(1.2);
+}
+button {
+  background: var(--accent);
+  color: #000;
+  padding: 12px;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+button:hover {
+  background: #00a88c;
+  transform: translateY(-2px);
+}
+main {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+}
+canvas {
+  border-radius: var(--radius);
+  border: 3px solid var(--border-color);
+  box-shadow: var(--shadow);
+  background: #111;
+}

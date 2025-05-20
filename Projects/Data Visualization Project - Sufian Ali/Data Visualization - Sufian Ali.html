@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NYC Dog Breeds - Visualization by Sufian Ali</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f0f4f8, #e8f0fe);
+      margin: 0;
+      padding: 40px;
+      color: #333;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    section {
+      max-width: 1000px;
+      margin: 30px auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+    canvas {
+      margin-top: 30px;
+      max-width: 100%;
+    }
+    ul {
+      padding-left: 20px;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>NYC Dog Breed Registrations</h1>
+  <h2>Visualization by Sufian Ali</h2>
+
+  <section>
+    <h2>Overview</h2>
+    <p>This page presents a visual comparison of the top 10 most registered dog breeds in New York City, using modern, subtle, and vibrant color schemes with the Chart.js library. Charts include a Doughnut and a Horizontal Bar representation for clarity and engagement.</p>
+  </section>
+
+  <section>
+    <h2>Dataset Overview</h2>
+    <p>This dataset showcases the 10 most commonly registered dog breeds in New York City, using real-world-inspired figures for illustration purposes.</p>
+    <ul>
+      <li>Labrador Retriever – 1280 registrations</li><li>French Bulldog – 1150 registrations</li><li>Golden Retriever – 950 registrations</li><li>German Shepherd – 800 registrations</li><li>Poodle – 780 registrations</li><li>Bulldog – 620 registrations</li><li>Beagle – 540 registrations</li><li>Rottweiler – 490 registrations</li><li>Yorkshire Terrier – 470 registrations</li><li>Dachshund – 450 registrations</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Doughnut Chart - Breed Proportion</h2>
+    <canvas id="doughnutChart"></canvas>
+  </section>
+
+  <section>
+    <h2>Horizontal Bar Chart - Breed Count</h2>
+    <canvas id="barChart"></canvas>
+  </section>
+
+  <script>
+    const dogBreeds = ['Labrador Retriever', 'French Bulldog', 'Golden Retriever', 'German Shepherd', 'Poodle', 'Bulldog', 'Beagle', 'Rottweiler', 'Yorkshire Terrier', 'Dachshund'];
+    const registrations = [1280, 1150, 950, 800, 780, 620, 540, 490, 470, 450];
+    const colors = ['#f94144', '#f3722c', '#f8961e', '#f9844a', '#f9c74f', '#90be6d', '#43aa8b', '#577590', '#277da1', '#9b5de5'];
+
+    new Chart(document.getElementById('doughnutChart'), {
+      type: 'doughnut',
+      data: {
+        labels: dogBreeds,
+        datasets: [{
+          data: registrations,
+          backgroundColor: colors,
+          hoverOffset: 15
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Proportion of Dog Breeds in NYC (Doughnut Chart) - Sufian Ali',
+            font: {
+              size: 20
+            }
+          },
+          legend: {
+            position: 'bottom'
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return context.label + ': ' + context.raw + ' registrations';
+              }
+            }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('barChart'), {
+      type: 'bar',
+      data: {
+        labels: dogBreeds,
+        datasets: [{
+          label: 'Number of Registrations',
+          data: registrations,
+          backgroundColor: colors
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Top 10 Dog Breeds in NYC (Bar Chart) - Sufian Ali',
+            font: {
+              size: 20
+            }
+          },
+          legend: {
+            display: false
+          }
+        },
+        scales: {
+          x: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Registrations'
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Dog Breeds'
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

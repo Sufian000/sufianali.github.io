@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Scene Builder</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <aside>
+    <div class="group">
+      <h2>Background</h2>
+      <label><input type="radio" name="bg" value="0" checked /> Meadow</label>
+      <label><input type="radio" name="bg" value="1" /> Beach</label>
+      <label><input type="radio" name="bg" value="2" /> Space</label>
+    </div>
+    <div class="group">
+      <h2>Character Position</h2>
+      <label><input id="axisToggle" type="checkbox" /> Move Vertically</label>
+      <input id="posSlider" type="range" min="0" max="400" value="200" />
+    </div>
+    <div class="group">
+      <h2>Items</h2>
+      <label><input id="item1" type="checkbox" /> Item 1</label>
+      <label><input id="item2" type="checkbox" /> Item 2</label>
+      <label><input id="item3" type="checkbox" /> Item 3</label>
+    </div>
+    <div class="group">
+      <h2>Sound Effects</h2>
+      <button id="sfx1">Play Sound 1</button>
+      <button id="sfx2">Play Sound 2</button>
+      <button id="sfx3">Play Sound 3</button>
+    </div>
+  </aside>
+  <main>
+    <canvas id="sceneCanvas" width="900" height="550"></canvas>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

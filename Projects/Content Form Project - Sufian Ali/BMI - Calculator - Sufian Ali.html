@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BMI Calculator</title>
+  <style>
+    :root {
+      --bg-color: rgba(255, 255, 255, 0.95);
+      --text-color: #000;
+      --btn-bg: #28a745;
+      --btn-hover: #218838;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: rgba(0, 0, 0, 0.85);
+      --text-color: #fff;
+      --btn-bg: #444;
+      --btn-hover: #222;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: url('https://images.unsplash.com/photo-1554284126-aa88f22d8b74');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(2px);
+      color: var(--text-color);
+    }
+
+    .bmi-container {
+      background: var(--bg-color);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .input-group {
+      display: flex;
+      gap: 10px;
+      margin: 10px 0;
+    }
+
+    .input-group input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .bmi-container select,
+    .bmi-container button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .bmi-container button {
+      background-color: var(--btn-bg);
+      color: white;
+      border: none;
+      font-weight: bold;
+    }
+
+    .bmi-container button:hover {
+      background-color: var(--btn-hover);
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .toggle-dark-mode {
+      margin-bottom: 10px;
+      cursor: pointer;
+      background: transparent;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 5px;
+    }
+
+    @media screen and (max-width: 480px) {
+      .input-group {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bmi-container">
+    <button class="toggle-dark-mode" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    <h2 id="title">BMI Calculator</h2>
+    <label for="language">Language:</label>
+    <select id="language">
+      <option value="en">English</option>
+      <option value="es">Español</option>
+      <option value="fr">Français</option>
+    </select>
+    <form id="bmiForm">
+      <label id="weightLabel">Weight:</label>
+      <div class="input-group">
+        <input type="number" id="weightKg" placeholder="Kilograms (kg)" step="0.1" />
+        <input type="number" id="weightLbs" placeholder="Pounds (lbs)" step="0.1" />
+      </div>
+
+      <label id="heightLabel">Height:</label>
+      <div class="input-group">
+        <input type="number" id="heightFt" placeholder="Feet (ft)" />
+        <input type="number" id="heightIn" placeholder="Inches (in)" />
+      </div>
+
+      <button type="button" onclick="startSpeechInput()">🎤 Speak</button>
+      <button type="submit" id="calcBtn">Calculate BMI</button>
+    </form>
+    <div class="result" id="bmiResult"></div>
+    <button onclick="exportResult()">Export Result</button>
+  </div>
+
+  <script>
+    const translations = {
+      en: { title: "BMI Calculator", weightLabel: "Weight:", heightLabel: "Height:", calcBtn: "Calculate BMI" },
+      es: { title: "Calculadora de IMC", weightLabel: "Peso:", heightLabel: "Altura:", calcBtn: "Calcular IMC" },
+      fr: { title: "Calculateur d'IMC", weightLabel: "Poids:", heightLabel: "Taille:", calcBtn: "Calculer l'IMC" }
+    };
+
+    function toggleDarkMode() {
+      const currentTheme = document.body.getAttribute('data-theme');
+      document.body.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
+    }
+
+    document.getElementById("language").addEventListener("change", function () {
+      const lang = this.value;
+      document.getElementById("title").textContent = translations[lang].title;
+      document.getElementById("weightLabel").textContent = translations[lang].weightLabel;
+      document.getElementById("heightLabel").textContent = translations[lang].heightLabel;
+      document.getElementById("calcBtn").textContent = translations[lang].calcBtn;
+    });
+
+    document.getElementById("bmiForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      calculateBMI();
+    });
+
+    function calculateBMI() {
+      let weight = parseFloat(document.getElementById("weightKg").value);
+      const lbs = parseFloat(document.getElementById("weightLbs").value);
+      const feet = parseFloat(document.getElementById("heightFt").value);
+      const inches = parseFloat(document.getElementById("heightIn").value);
+
+      if (!weight && lbs) {
+        weight = lbs * 0.453592;
+      }
+
+      if (!weight || isNaN(feet) || isNaN(inches)) {
+        document.getElementById("bmiResult").textContent = "Please enter valid weight and height.";
+        return;
+      }
+
+      const heightM = ((feet * 12) + inches) * 0.0254;
+      const bmi = weight / (heightM * heightM);
+      document.getElementById("bmiResult").textContent = `Your BMI is ${bmi.toFixed(2)}.`;
+    }
+
+    function exportResult() {
+      const result = document.getElementById("bmiResult").textContent;
+      if (!result) return alert("No result to export.");
+      const blob = new Blob([result], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "BMI_Result.txt";
+      link.click();
+    }
+
+    function startSpeechInput() {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.start();
+
+      recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript;
+        const words = transcript.split(" ");
+        for (let word of words) {
+          if (word.includes("pound")) {
+            document.getElementById("weightLbs").value = parseFloat(word);
+          } else if (word.includes("kilo")) {
+            document.getElementById("weightKg").value = parseFloat(word);
+          } else if (word.includes("foot")) {
+            document.getElementById("heightFt").value = parseFloat(word);
+          } else if (word.includes("inch")) {
+            document.getElementById("heightIn").value = parseFloat(word);
+          }
+        }
+      };
+    }
+  </script>
+</body>
+</html>
