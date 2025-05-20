@@ -1,0 +1,120 @@
+/* style.css */
+
+/* Google Fonts already imported in HTML (Roboto) */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
+  color: #212529;
+  line-height: 1.6;
+  padding: 2rem;
+}
+
+.aboutme-website-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 3rem 4rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.aboutme-website-container:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.aboutme-inner-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.website-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #0d6efd;
+  border-bottom: 3px solid #dee2e6;
+  padding-bottom: 0.5rem;
+}
+
+.aboutme-inner-container p {
+  font-size: 1.1rem;
+  color: #495057;
+}
+
+.aboutme-inner-container a {
+  color: #0d6efd;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.aboutme-inner-container a:hover {
+  text-decoration: underline;
+  color: #0a58ca;
+}
+
+.title {
+  font-size: 1.8rem;
+  color: #343a40;
+  border-left: 6px solid #0d6efd;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+}
+
+.projects-container h2 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #212529;
+  border-bottom: 2px solid #ced4da;
+  padding-bottom: 0.5rem;
+}
+
+.projects-container ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 1rem;
+}
+
+.projects-container li {
+  margin-bottom: 0.5rem;
+}
+
+.project {
+  display: inline-block;
+  background-color: #e9ecef;
+  color: #212529;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.project:hover {
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .aboutme-website-container {
+    padding: 2rem;
+  }
+
+  .website-title {
+    font-size: 2.2rem;
+  }
+
+  .title {
+    font-size: 1.4rem;
+  }
+
+  .project {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+}
