@@ -1,0 +1,39 @@
+{
+  "inventors": [
+    {
+      "name": "Thomas Edison",
+      "invention": "Light Bulb",
+      "description": "Edison developed the first practical and long-lasting light bulb, transforming modern life.",
+      "image": "images/edison.jpg",
+      "audio": "audio/edison.mp3"
+    },
+    {
+      "name": "Alexander Graham Bell",
+      "invention": "Telephone",
+      "description": "Bell is credited with inventing and patenting the first practical telephone.",
+      "image": "images/bell.jpg",
+      "audio": "audio/bell.mp3"
+    },
+    {
+      "name": "Nikola Tesla",
+      "invention": "Alternating Current",
+      "description": "Tesla revolutionized electricity delivery with the development of alternating current (AC) systems.",
+      "image": "images/tesla.jpg",
+      "audio": "audio/tesla.mp3"
+    },
+    {
+      "name": "Marie Curie",
+      "invention": "Radioactivity Research",
+      "description": "Curie conducted pioneering research on radioactivity, becoming the first woman to win a Nobel Prize.",
+      "image": "images/curie.jpg",
+      "audio": "audio/curie.mp3"
+    },
+    {
+      "name": "Tim Berners-Lee",
+      "invention": "World Wide Web",
+      "description": "Berners-Lee invented the World Wide Web, enabling easy access and sharing of information on the Internet.",
+      "image": "images/bernerslee.jpg",
+      "audio": "audio/bernerslee.mp3"
+    }
+  ]
+}
