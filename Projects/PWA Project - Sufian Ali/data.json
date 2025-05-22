@@ -1,0 +1,26 @@
+
+{
+  "inventors": [
+    {
+      "name": "Thomas Edison",
+      "invention": "Light Bulb",
+      "description": "Edison developed the first practical and long-lasting light bulb, transforming modern life.",
+      "image": "images/edison.jpg",
+      "audio": "audio/edison.mp3"
+    },
+    {
+      "name": "Alexander Graham Bell",
+      "invention": "Telephone",
+      "description": "Bell is credited with inventing and patenting the first practical telephone.",
+      "image": "images/bell.jpg",
+      "audio": "audio/bell.mp3"
+    },
+    {
+      "name": "Nikola Tesla",
+      "invention": "Alternating Current",
+      "description": "Tesla revolutionized electricity delivery with the development of alternating current (AC) systems.",
+      "image": "images/tesla.jpg",
+      "audio": "audio/tesla.mp3"
+    }
+  ]
+}

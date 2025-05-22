@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Famous Inventors</title>
+  <link rel="stylesheet" href="final-style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <header>
+    <h1>Famous Inventors & Their Inventions</h1>
+  </header>
+  <main>
+    <canvas id="backgroundCanvas"></canvas>
+    <div class="carousel">
+      <div class="carousel-track" id="carouselTrack">
+        <div class="inventor-card">
+          <h2>Thomas Edison</h2>
+          <img src="images/edison.jpg" alt="Portrait of Thomas Edison" loading="lazy">
+          <p><strong>Invention:</strong> Light Bulb</p>
+          <p>Edison developed the first practical and long-lasting light bulb, transforming modern life.</p>
+          <button onclick="new Audio('audio/edison.mp3').play()">Play Audio</button>
+        </div>
+        <div class="inventor-card">
+          <h2>Alexander Graham Bell</h2>
+          <img src="images/bell.jpg" alt="Portrait of Alexander Graham Bell" loading="lazy">
+          <p><strong>Invention:</strong> Telephone</p>
+          <p>Bell is credited with inventing and patenting the first practical telephone.</p>
+          <button onclick="new Audio('audio/bell.mp3').play()">Play Audio</button>
+        </div>
+        <div class="inventor-card">
+          <h2>Nikola Tesla</h2>
+          <img src="images/tesla.jpg" alt="Portrait of Nikola Tesla" loading="lazy">
+          <p><strong>Invention:</strong> Alternating Current</p>
+          <p>Tesla revolutionized electricity delivery with the development of alternating current (AC) systems.</p>
+          <button onclick="new Audio('audio/tesla.mp3').play()">Play Audio</button>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-controls">
+      <button onclick="moveSlide(-1)">Previous</button>
+      <button onclick="moveSlide(1)">Next</button>
+    </div>
+  </main>
+  <script>
+    let currentIndex = 0;
+    const track = document.getElementById('carouselTrack');
+    const totalSlides = track.children.length;
+
+    function moveSlide(direction) {
+      currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+      const offset = -currentIndex * 100;
+      track.style.transform = `translateX(${offset}%)`;
+    }
+  </script>
+</body>
+</html>
